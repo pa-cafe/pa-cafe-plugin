@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Copy skills/pa-cafe/SKILL.md from the PA Cafe Agent Skills discovery index.
 
-The single source is dnplus/pa-cafe public/.well-known/agent-skills/pa-cafe/SKILL.md,
+The single source is pa-cafe/pa-cafe public/.well-known/agent-skills/pa-cafe/SKILL.md,
 served at <base>/.well-known/agent-skills/pa-cafe/SKILL.md and listed with a sha256
 digest in <base>/.well-known/agent-skills/index.json
 (https://github.com/cloudflare/agent-skills-discovery-rfc, v0.2.0).

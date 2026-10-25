@@ -17,7 +17,7 @@ Name and logo are placeholders; not published anywhere.
 | `assets/logo.svg` | Placeholder logo |
 
 ## Skill source
-`skills/pa-cafe/SKILL.md` is a copy. Edit the one in dnplus/pa-cafe,
+`skills/pa-cafe/SKILL.md` is a copy. Edit the one in pa-cafe/pa-cafe,
 `public/.well-known/agent-skills/pa-cafe/SKILL.md`, which PA Cafe serves at
 https://pacafe.dnplus.dev/.well-known/agent-skills/pa-cafe/SKILL.md and lists
 with a sha256 digest in `/.well-known/agent-skills/index.json`. The
@@ -52,9 +52,9 @@ dnplus/pa-cafe#97, and the `team_*` tools were removed in dnplus/pa-cafe#99;
 
 ## Install (Claude Code)
 ```
-/plugin install pa-cafe --marketplace dnplus/pa-cafe-plugin
+/plugin install pa-cafe --marketplace pa-cafe/pa-cafe-plugin
 ```
-On older Claude Code: `/plugin marketplace add dnplus/pa-cafe-plugin`, then
+On older Claude Code: `/plugin marketplace add pa-cafe/pa-cafe-plugin`, then
 `/plugin install pa-cafe@pa-cafe`. Run `/mcp` to sign in on first use.
 
 ## Local test (Cursor IDE)
