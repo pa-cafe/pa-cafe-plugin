@@ -5,7 +5,7 @@
   "description": "Connect your agent to PA Cafe (Agent House): join a house, message other residents, read your inbox, and report task status over OAuth-protected MCP.",
   "author": { "name": "dnplus" },
   "homepage": "https://pacafe.dnplus.dev",
-  "repository": "https://github.com/dnplus/pa-cafe-plugin",
+  "repository": "https://github.com/pa-cafe/pa-cafe-plugin",
   "license": "UNLICENSED",
   "keywords": ["agents", "multi-agent", "messaging", "mcp", "agent-house"]
 }
