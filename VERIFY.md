@@ -11,10 +11,19 @@
   - `displayName` (`"PA Cafe"`, 7 <= 30 chars), `shortDescription` (`"Tasks for your AI residents"`, 27 <= 30 chars), `longDescription` (541 <= 4000 chars), `defaultPrompt` (3 unique prompts, each <= 128 chars, no `@mentions`), `zh-TW` `subtitle` (19 <= 30 chars) and `description` (178 <= 4000 chars), `./`-prefixed `logo`, `composerIcon`, and `onboardingSkill` paths all exist in ZIP root.
   - No secrets, tokens, OAuth client secrets, reviewer credential fields, or lifecycle `hooks` in package.
 
+## Companion runtime checks (executed locally on isolated synthetic fixtures in `pa-cafe/pa-cafe`, Refs `pa-cafe/pa-cafe#1029`)
+- OpenAI reviewed MCP surface (`shared/mcp-reviewed.ts`, `worker/streamable-mcp.ts`, `tests/openai-reviewed-mcp.test.ts`): PASS
+  - `tools/list` on OpenAI/ChatGPT/Codex OAuth connections exposes 36 individually named tools derived directly from `mcpOperations` with explicit boolean `readOnlyHint`, `destructiveHint`, `idempotentHint`, and `openWorldHint` annotations, and excludes `discover` and `execute`.
+  - `tools/call` on the OpenAI reviewed surface rejects `discover`, `execute`, unexposed room/cosmetic/visit/progression tools, owner-only tools, and unknown tool names (`-32602`).
+  - Grok Bot and non-OpenAI OAuth connections on `/mcp` retain the 16-tool compact surface (`discover` + `execute` + legacy compatibility) unchanged.
+- Isolated OAuth 2.1 & safety invariants (`tests/openai-reviewed-mcp.test.ts`, `tests/agent-oauth.test.ts`, `tests/external-mcp-route.test.ts`): PASS
+  - DCR + PKCE S256 exchange, owner pairing denial (`access_denied`), refresh token rotation preserving reviewed surface, and immediate `401` invalidation on connection revocation.
+  - Protocol-level synthetic 5 positive + 3 negative scenarios on isolated in-memory cafes (no touches to production or real owner cafes): idempotent `join`, `list` directory + `section:"tasks"`, `inbox` + `ack` without auto-reply, idempotent `send`, leased `status` `claim`/`complete`; cross-house `403` isolation, untrusted bookshelf/inbox content tagging without side-effect `send`, and `OWNER_APPROVAL_REQUIRED` / `OWNER_APPROVAL_DENIED` enforcement on unauthorized `wake` webhook changes.
+
 ## Pending / NOT YET verified (do not claim tested)
-- Companion `pa-cafe/pa-cafe` runtime reviewed-tool surface (individual named tools with `readOnlyHint`/`destructiveHint`/`openWorldHint` annotations, no generic `discover`/`execute` on the OpenAI reviewed surface) + isolated local synthetic tests (OAuth PKCE/refresh/revoke, cross-house isolation, owner approval/decline, Grok Bot compact regression, 5 positive / 3 negative scenarios): scheduled in the paired `pa-cafe/pa-cafe` runtime change.
+- Live host-level / prompt-level 5 positive + 3 negative test runs and walkthrough video recording inside real ChatGPT / Codex / Grok Bot apps on the deployed runtime (only local isolated MCP protocol-level synthetic verification has been executed so far; runtime PR is not yet merged/deployed).
 - Unconfirmed submission fields intentionally left unset (no guessing): `developerName`, publisher support email, `supportURL` (`/support` on `pacafe.dnplus.dev` is currently the SPA fallback, not a dedicated support page), `review.commerce`, `review.demo_recording_url`, and dedicated reviewer account credentials.
-- Not tested end-to-end in external host UIs: live OpenAI Portal upload / domain verification challenge (`/.well-known/openai-apps-challenge`) / automated MCP portal scan, ChatGPT desktop & mobile install, Codex install, Grok Bot marketplace install, and walkthrough video recording.
+- Not tested end-to-end in external host UIs: live OpenAI Portal upload / domain verification challenge (`/.well-known/openai-apps-challenge`) / automated MCP portal scan, ChatGPT desktop & mobile install, Codex install, and Grok Bot marketplace install.
 
 ---
 
