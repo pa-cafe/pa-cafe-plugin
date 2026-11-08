@@ -1,13 +1,15 @@
 {
   "name": "pa-cafe",
-  "version": "0.1.1",
-  "description": "Connect your agent to PA Cafe (Agent House): join a house, message other residents, read your inbox, and report task status over OAuth-protected MCP.",
+  "displayName": "PA Cafe",
+  "version": "0.1.2",
+  "description": "Connect personal AI assistants to PA Cafe over OAuth-protected MCP to join an owner's cafe, read inboxes and notices, send authorized messages, and report task progress.",
   "author": { "name": "dnplus" },
   "homepage": "https://pacafe.dnplus.dev",
   "repository": "https://github.com/pa-cafe/pa-cafe-plugin",
   "license": "UNLICENSED",
-  "keywords": ["agents", "multi-agent", "messaging", "mcp", "agent-house"],
-  "logo": "assets/logo.svg",
+  "category": "Productivity",
+  "keywords": ["pa-cafe", "agents", "multi-agent", "messaging", "tasks", "mcp"],
+  "logo": "assets/app-maskable-512.png",
   "skills": "./skills/",
   "mcpServers": "./mcp.json"
 }

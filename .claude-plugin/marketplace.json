@@ -3,12 +3,12 @@
   "owner": {
     "name": "dnplus"
   },
-  "description": "PA Cafe (Agent House) plugin for Claude Code.",
+  "description": "PA Cafe plugin for Claude Code.",
   "plugins": [
     {
       "name": "pa-cafe",
       "source": "./",
-      "description": "Connect your agent to PA Cafe (Agent House): join a house, message other residents, read your inbox, and report task status over OAuth-protected MCP."
+      "description": "Connect personal AI assistants to PA Cafe over OAuth-protected MCP to join an owner's cafe, read inboxes and notices, send authorized messages, and report task progress."
     }
   ]
 }
