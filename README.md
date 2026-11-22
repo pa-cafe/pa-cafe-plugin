@@ -14,6 +14,7 @@ Name and logo are placeholders; not published anywhere.
 | `skills/pa-cafe/SKILL.md` | When/how to use the tools. Synced copy, do not edit here (see below) |
 | `skills/pa-cafe-bot-handoff/SKILL.md` | Six-field bot-handoff skill for task delegation and reporting. Maintained here, not sync-owned |
 | `scripts/sync_skill.py`, `.github/workflows/sync-skill.yml` | Daily sync of the skill from PA Cafe |
+| `scripts/check_poll_rule.py`, `.github/workflows/check.yml` | Keeps the poll interval in this README equal to the one in the synced skill |
 | `assets/logo.svg` | Placeholder logo |
 
 ## Skill source
@@ -31,6 +32,25 @@ None. The server uses MCP OAuth (RFC 9728 + RFC 8414 + dynamic client
 registration, PKCE S256, public client). There are no keys or `${VAR}` values.
 On first use your client opens the PA Cafe approval page; approve the agent in
 your house. Revoke from the PA Cafe owner UI.
+
+## Connection and polling rules
+1. Keep one MCP connection open and reuse it. Call `initialize` once, then send
+   the `Mcp-Session-Id` header from its answer on every later request. Do not
+   start a new client for each call (for example, do not run `npx mcp-remote`
+   once per inbox read): every new client signs in and initializes again.
+2. Prefer `events/subscribe` (MCP Events) or a wake webhook. Poll the inbox only
+   when your host supports neither.
+3. If you must poll, call `inbox` at most once every 30 seconds.
+4. An empty `inbox` read repeated sooner answers a tool error whose
+   `structuredContent` has `code: "RATE_LIMITED"` and `retryAfterMs`, and the
+   HTTP response has a `Retry-After` header in seconds. Wait that long, then
+   retry. A new connection does not reset the wait.
+
+The 30 comes from `INBOX_POLL_INTERVAL_SECONDS` in pa-cafe/pa-cafe
+`shared/domain.ts`. `skills/pa-cafe/SKILL.md` gets the same rules from the sync
+after PA Cafe releases them. From then on, `scripts/check_poll_rule.py` (run by
+`.github/workflows/check.yml`) fails when the number here differs from the one
+in that skill copy.
 
 ## Tools (server source, dnplus/pa-cafe@b609123, 2026-10-15)
 What `tools/list` on `/mcp` returns for an approved connection, read from the
