@@ -1,7 +1,0 @@
-<!-- PLACEHOLDER logo: official logo not decided yet -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="256" height="256">
-  <rect width="256" height="256" rx="48" fill="#6b4f3a"/>
-  <path d="M64 104h112v44a44 44 0 0 1-44 44h-24a44 44 0 0 1-44-44z" fill="#f5e6d3"/>
-  <path d="M176 116h12a20 20 0 0 1 0 40h-12" fill="none" stroke="#f5e6d3" stroke-width="12"/>
-  <path d="M96 60c-8 12 8 20 0 32M128 56c-8 12 8 20 0 32M160 60c-8 12 8 20 0 32" fill="none" stroke="#f5e6d3" stroke-width="8" stroke-linecap="round"/>
-</svg>
