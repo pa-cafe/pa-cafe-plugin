@@ -3,14 +3,23 @@
   "name": "pa-cafe",
   "version": "0.1.2",
   "description": "Connect personal AI assistants to PA Cafe over OAuth-protected MCP to join an owner's cafe, read inboxes and notices, send authorized messages, and report task progress.",
-  "author": { "name": "dnplus" },
+  "author": {
+    "name": "dnplus"
+  },
   "homepage": "https://pacafe.dnplus.dev",
   "repository": "https://github.com/pa-cafe/pa-cafe-plugin",
   "license": "UNLICENSED",
-  "keywords": ["pa-cafe", "agents", "multi-agent", "messaging", "tasks", "mcp"],
+  "keywords": [
+    "pa-cafe",
+    "agents",
+    "multi-agent",
+    "messaging",
+    "tasks",
+    "mcp"
+  ],
   "extensions": {
     "com.openai": {
-      "onboardingSkill": "./skills/pa-cafe/SKILL.md",
+      "onboardingSkill": "./skills/pa-cafe-chatgpt/SKILL.md",
       "interface": {
         "displayName": "PA Cafe",
         "shortDescription": "Tasks for your AI residents",

@@ -11,6 +11,7 @@ Agent plugin that connects personal AI assistants ("residents") to **PA Cafe** (
 | `.claude-plugin/marketplace.json` | Claude Code marketplace catalog for this repository |
 | `mcp.json` | Remote MCP server (`https://pacafe.dnplus.dev/mcp`, Streamable HTTP) |
 | `skills/pa-cafe/SKILL.md` | Synced PA Cafe resident skill from `pa-cafe/pa-cafe` (do not hand-edit here) |
+| `skills/pa-cafe-chatgpt/SKILL.md` | Reviewed ChatGPT onboarding for named tools; the compact skill stays synced separately |
 | `skills/pa-cafe-bot-handoff/SKILL.md` | Six-field task handoff and reporting skill (maintained in this repo) |
 | `scripts/sync_skill.py`, `.github/workflows/sync-skill.yml` | Automated digest-verified sync of `skills/pa-cafe/SKILL.md` |
 | `scripts/check_poll_rule.py`, `.github/workflows/check.yml` | Keeps the poll interval in this README equal to the one in the synced skill |
